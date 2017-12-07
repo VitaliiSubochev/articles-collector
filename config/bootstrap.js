@@ -1,7 +1,3 @@
-const util = require('util');
-const Twitter = require('twitter');
-let supeagent = require('superagent');
-
 /**
  * Bootstrap
  * (sails.config.bootstrap)
