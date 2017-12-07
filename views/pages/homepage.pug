@@ -1,0 +1,11 @@
+extends ../layouts/layout.pug
+
+append body
+  .container
+    .navbar.navbar-light.bg-light
+      form.form-inline#search-form(action="/fbsearch" method="POST")
+        .input-group
+          input.form-control.mr-sm-2(type="search" name="search")
+          button.btn.btn-info.my-2.my-sm-0#submit-button Найти
+
+    
