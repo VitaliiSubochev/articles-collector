@@ -21,7 +21,8 @@
     "sails-hook-sockets": "^1.4.0",
     "sails-mysql": "^1.0.0-15",
     "sequelize": "^4.26.0",
-    "socket.io-redis": "4.0.0"
+    "socket.io-redis": "4.0.0",
+    "debug": "3.1.0"
   },
   "devDependencies": {
     "eslint": "3.19.0"
@@ -41,6 +42,6 @@
   "author": "Vitaly Subochev",
   "license": "MIT",
   "engines": {
-    "node": "8"
+    "node": "9"
   }
 }

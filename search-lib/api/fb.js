@@ -28,18 +28,6 @@ class FB {
 
     try {
 
-      if (!/^v\d+\.\d+\//.test(endpoint)) {
-        endpoint = `v${this.config.api.version}/${endpoint}`;
-      }
-
-      let url = new URL(`https://graph.facebook.com/${endpoint}`);
-      
-      if (checkNested(request.params, 'access_token')) {
-        url.search = new URLSearchParams(request.params);
-      } else {
-        url.search = new URLSearchParams({ access_token: token, ...request.params });
-      }
-
       const options = {
         method: 'GET',
         timeout: timeout,
@@ -50,6 +38,25 @@ class FB {
         },
         agent: agent
       };
+
+      let url;
+
+      if (endpoint === '') {
+        url = new URL(`https://graph.facebook.com/`);
+        options.method = 'POST';
+        options.body = 'batch=' + encodeURIComponent(JSON.stringify(request.params.batch)) + '&access_token=' + token + '&include_headers=false';
+      } else {
+        if (!/^v\d+\.\d+\//.test(endpoint)) {
+          endpoint = `v${this.config.api.version}/${endpoint}`;
+        }
+        url = new URL(`https://graph.facebook.com/${endpoint}`);
+      }
+      
+      if (checkNested(request.params, 'access_token')) {
+        url.search = new URLSearchParams((endpoint === '' ? '' : request.params));
+      } else {
+        url.search = new URLSearchParams((endpoint === '' ? '' : { access_token: token, ...request.params }));
+      }
 
       //debug(`http --> ${endpoint}`);
       
@@ -87,4 +94,4 @@ class FB {
 
 }
   
-  module.exports = FB;
+module.exports = FB;

@@ -24,9 +24,9 @@ module.exports.custom = {
   // …
 	
 	fb: {
-		app: '525146231179001',		
-		key: 'f1255330d28c46e5c61be054580b9fd9',
-		token: 'EAAHdniKQhvkBABhEvlr9CECZC77XBOuhFVV3KOG6178d8bUd6bUsmP3uYI1CfPUEvEdX5XsYUZBTN61ctiXa6wRLyRK8OZAUFKQIZAiSAYqnbWAJW2JLwoETgklA1m7w1yVoUqjYs8LZCWv1eJuL2CdE9NqTQbcmWfr45F2gEkgZDZD',
+		app: '955280417962731',		
+		key: '6ae37f0be139e7fa8bd6e348bd1b3e58',
+		token: 'EAANk0o35OusBAFLAiFtTLWKwnrv9ZA7tNZC7cMZAJwGkIVEzZCd9QgoC5zeEzTCnp2zWBWumiohxU2SZALbBXZAivL0jJgwtNgrrOU6naV7u80VRT2Ez7MMI6dWZB7UwKhmH8AtbYQXNUuzPGBSeYZA1fschbZBWfwWZATpVKkhOSuZAwZDZD',
 		headers: {
 			'User-Agent': DESKTOP_USER_AGENT
 		},
@@ -34,7 +34,7 @@ module.exports.custom = {
 			version: '2.11',
 		},
 		timeout: 5000,
-		wait: 100,
+		wait: 10,
 		attempts: 3
 	},
 

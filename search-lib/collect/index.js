@@ -40,7 +40,7 @@ class CollectStream extends Readable {
   }
 
   async _read() {
-    let req, res, parsed, data, paging;
+    let req, res, parsed, data, paging, summary;
 
     req = new Request(this.endpoint, { ...this.params });
 
@@ -67,11 +67,23 @@ class CollectStream extends Readable {
 
     data = getNestedField(parsed, 'data');
     paging = getNestedField(parsed, 'paging');
+    summary = getNestedField(parsed, 'summary');
 
     if (data) {      
       if (data.length === 0) {
-        this.push(null);
-        return;
+        if (summary) {
+          if (this.limit === 0 && this.received > this.limit) {
+            this.push(null);
+            return;
+          } else {
+            this.received += 1;
+            this.push(summary);
+            return;
+          }
+        } else {
+          this.push(null);
+          return;
+        }
       }
 
       this.received += data.length;
@@ -99,8 +111,32 @@ class CollectStream extends Readable {
         return;
       }
     } else {
-      this.push(null);
-      return;
+      if (parsed instanceof Array && parsed.length !== 0) {
+        let result = [];
+
+        for (let item of parsed) {
+          if (item.body) {
+            try {
+              result.push(JSON.parse(item.body));
+            } catch(err) {
+              this.emit('error', err);
+              return;
+            }
+          }
+        }
+        this.received += result.length;
+
+        if (this.received > this.params.batch.length) {
+          this.push(null);
+          return;          
+        } else {
+          this.push(result);
+          return;
+        }
+      } else {
+        this.push(null);
+        return;
+      }
     }
     this.push(data);
   }

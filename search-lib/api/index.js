@@ -1,4 +1,5 @@
 const FB = require('./fb');
+const TW = require('./tw');
 const Request = require('../api/request');
 
 
@@ -6,7 +7,7 @@ class API {
 
   constructor(sails) {
     this.fb = new FB(this, sails.config.custom.fb);
-    this.tw = {};
+    this.tw = new TW(this, sails.config.custom.tw);
 
     this.queue = [];
     this.started = false;

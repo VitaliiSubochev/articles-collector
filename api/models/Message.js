@@ -17,15 +17,20 @@ module.exports = {
     // id в базе vk, tw, fb
     src_id: {
       type: Sequelize.STRING,
-      allowNull: false      
+      allowNull: false    
     },
-    // время создания сообщения в vk, fb, tw
+    // время создания сообщения в базе vk, fb, tw
     created_time: {
       type: Sequelize.DATE,
       allowNull: true
     },
     // заголовок сообщения
     title: {
+      type: Sequelize.STRING,
+      allowNull: true
+    },
+    // описание сообщения
+    description: {
       type: Sequelize.STRING,
       allowNull: true
     },
@@ -39,10 +44,15 @@ module.exports = {
       //   len: [15, 1024]
       // }    
     },
+    // ссылка на
+    url: {
+      type: Sequelize.STRING,
+      allowNull: true
+    },
     // как часто ключевое слово встречается в тексте сообщения
     keyword_count: {
       type: Sequelize.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     // общее количество коментариев
     comments_count: {
@@ -53,6 +63,10 @@ module.exports = {
     likes_count: {
       type: Sequelize.INTEGER,
       allowNull: true
+    },
+    weight: {
+      type: Sequelize.INTEGER,
+      allowNull: true    
     },
     // откуда получено сообщение (тип источника)
     src_type: {
@@ -68,10 +82,15 @@ module.exports = {
   },
 
   options: {
-      charset: 'utf8',
-      collate: 'utf8_general_ci',
+      charset: 'utf8mb4',
+      collate: 'utf8mb4_general_ci',
       freezeTableName: false,
       tableName: 'messages',     
+  },
+
+  indexes: {
+    unique: true,
+    fields: ['src_id']
   }
 
 };

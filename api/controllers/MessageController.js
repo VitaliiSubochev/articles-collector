@@ -14,9 +14,9 @@ module.exports = {
 
   search: async function(req, res) {
     sails.log.debug("[MessageController.search]");
-
+    
+    res.redirect('/');
     await sails.hooks.fbsearch.run(req.param('search'));
-    sails.log.info('Search in Facebook Graph API is finished');
-    res.view('pages/homepage');
+    sails.log.info('Search in Facebook Graph API is finished');  
   }
 }

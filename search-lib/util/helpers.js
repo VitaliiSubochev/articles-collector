@@ -38,3 +38,20 @@ exports.checkNested = function (obj) {
   }
   return true;
 }
+
+exports.quickSort = function quickSort (arr, prop) {
+  //if (arr instanceof Array) {
+    if (arr.length <= 1) {
+      return arr;
+    }
+
+    let pivot = arr[0];
+    let left = [];
+    let right = [];
+
+    for (let i = 1; i < arr.length; i++) {
+      arr[i][prop] > pivot[prop] ? left.push(arr[i]) : right.push(arr[i]);
+    }
+    return quickSort(left, prop).concat(pivot, quickSort(right, prop));
+  //}
+}

@@ -20,14 +20,14 @@ module.exports.datastores = {
     host: 'localhost',
     port: 3306,
     user: 'admin',
-    password: 'Password1',
+    password: 'Privet123',
     database: 'afdb',
     options: {
         dialect: 'mysql',
         host: 'localhost',
         port: 3306,
         user: 'admin',
-        password: 'Password1',
+        password: 'Privet123',
         database: 'afdb',
         logging: console.log
     }
@@ -64,5 +64,5 @@ module.exports.datastores = {
     * 3. Then pass it in, along with a connection URL.                         *
     *    (See https://sailsjs.com/config/datastores for help.)                 *
     *                                                                          *
-    ***************************************************************************/ 
+    ***************************************************************************/
 };
